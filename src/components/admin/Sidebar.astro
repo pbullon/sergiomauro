@@ -1,0 +1,24 @@
+---
+import NavLink from './NavLink.astro';
+---
+<aside class="w-64 bg-background-light dark:bg-background-dark p-6 flex flex-col justify-between border-r border-primary/10 dark:border-primary/20">
+    <div class="flex flex-col gap-8">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-3xl">rv_hookup</span>
+            <h1 class="text-xl font-bold text-background-dark dark:text-background-light">Motorhome Admin</h1>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <NavLink href="#" icon="dashboard" label="Panel" />
+            <NavLink href="#" icon="local_shipping" label="Motorhomes" active={true} />
+            <NavLink href="#" icon="calendar_month" label="Reservas" />
+            <NavLink href="#" icon="group" label="Clientes" />
+        </nav>
+    </div>
+    <div class="flex flex-col gap-2">
+        <NavLink href="#" icon="settings" label="Configuración" />
+        <a class="flex items-center gap-3 px-4 py-2 rounded text-background-dark dark:text-background-light/70 hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+            <div class="w-8 h-8 rounded-full bg-cover bg-center" style='background-image: url("/images/sergio.jpg");'></div>
+            <span class="text-sm font-medium">Sergio</span>
+        </a>
+    </div>
+</aside>

@@ -1,0 +1,51 @@
+---
+---
+<div class="rounded-xl bg-card-light dark:bg-card-dark p-8 shadow-lg">
+    <form class="space-y-6">
+        <div>
+            <label class="block text-sm font-medium text-foreground-light dark:text-foreground-dark" for="email">Dirección de Email</label>
+            <div class="mt-1">
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    placeholder="vos@ejemplo.com"
+                    class="form-input block w-full rounded-lg border-input-light bg-background-light p-3 text-foreground-light placeholder-foreground-light/50 focus:border-primary focus:ring-primary dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark dark:placeholder-foreground-dark/50"
+                />
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-foreground-light dark:text-foreground-dark" for="password">Contraseña</label>
+            <div class="mt-1">
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                    placeholder="••••••••"
+                    class="form-input block w-full rounded-lg border-input-light bg-background-light p-3 text-foreground-light placeholder-foreground-light/50 focus:border-primary focus:ring-primary dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark dark:placeholder-foreground-dark/50"
+                />
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-input-light text-primary focus:ring-primary dark:border-input-dark dark:bg-background-dark" />
+                <label for="remember-me" class="ml-2 block text-sm text-foreground-light dark:text-foreground-dark">Recordarme</label>
+            </div>
+            <div class="text-sm">
+                <a href="#" class="font-medium text-primary hover:text-primary/80">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="flex w-full justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                Ingresar
+            </button>
+        </div>
+    </form>
+</div>

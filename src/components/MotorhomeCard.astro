@@ -1,0 +1,24 @@
+---
+import WhatsappIcon from './icons/WhatsappIcon.astro';
+
+interface Props {
+    title: string;
+    image: string | null;
+    price: string;
+}
+
+const { title, image, price} = Astro.props;
+---
+<div class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+    <img alt={title} class="w-full h-56 object-cover" src={image} />
+    <div class="p-6 flex flex-col flex-grow">
+        <h3 class="text-xl font-bold text-stone-900 dark:text-white">{title}</h3>
+        <div class="mt-6 flex justify-between items-center">
+            <p class="text-2xl font-bold text-primary">{price}</p>
+        </div>
+        <button class="w-full mt-6 px-4 py-3 rounded-lg bg-[#25D366] text-white font-bold hover:bg-[#1DAE56] transition-colors flex items-center justify-center gap-2">
+            <WhatsappIcon />
+            Contactar por WhatsApp
+        </button>
+    </div>
+</div>

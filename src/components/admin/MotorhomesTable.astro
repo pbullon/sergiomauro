@@ -1,0 +1,47 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+// En el futuro, estos datos vendrán de tu base de datos
+const motorhomes = [
+    { id: 1, image: '/images/motorhome-1.jpg', name: 'Aventura Familiar', model: 'Modelo A', price: '$100/día', status: 'Disponible' },
+    { id: 2, image: '/images/motorhome-2.jpg', name: 'Explorador Compacto', model: 'Modelo B', price: '$120/día', status: 'Reservado' },
+    { id: 3, image: '/images/motorhome-3.jpg', name: 'Palacio Rodante', model: 'Modelo C', price: '$110/día', status: 'Disponible' },
+];
+---
+<div class="bg-background-light dark:bg-background-dark rounded-lg border border-primary/20 dark:border-primary/30 overflow-x-auto">
+    <table class="w-full text-left">
+        <thead class="border-b border-primary/20 dark:border-primary/30">
+            <tr>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider">Imagen</th>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider">Nombre</th>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider">Modelo</th>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider">Precio</th>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider">Estado</th>
+                <th class="p-4 text-sm font-bold text-background-dark dark:text-background-light/70 uppercase tracking-wider text-right">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-primary/10 dark:divide-primary/20">
+            {motorhomes.map(item => (
+                <tr class="hover:bg-primary/5 dark:hover:bg-primary/10">
+                    <td class="p-4">
+                        <div class="w-12 h-12 rounded-lg bg-cover bg-center" style={`background-image: url("${item.image}");`}></div>
+                    </td>
+                    <td class="p-4 text-sm font-medium text-background-dark dark:text-background-light">{item.name}</td>
+                    <td class="p-4 text-sm text-background-dark/70 dark:text-background-light/70">{item.model}</td>
+                    <td class="p-4 text-sm text-background-dark/70 dark:text-background-light/70">{item.price}</td>
+                    <td class="p-4">
+                        <StatusBadge status={item.status as any} />
+                    </td>
+                    <td class="p-4 text-right">
+                        <button class="p-2 rounded-full text-background-dark/60 dark:text-background-light/60 hover:bg-primary/10 dark:hover:bg-primary/20">
+                            <span class="material-symbols-outlined">edit</span>
+                        </button>
+                        <button class="p-2 rounded-full text-background-dark/60 dark:text-background-light/60 hover:bg-primary/10 dark:hover:bg-primary/20">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>

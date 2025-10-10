@@ -1,0 +1,18 @@
+---
+import AdminLayout from '../../layouts/adminLayout.astro';
+import Sidebar from '../../components/admin/sidebar.astro';
+import Header from '../../components/admin/header.astro';
+import MotorhomesTable from '../../components/admin/motorhomesTable.astro';
+---
+<AdminLayout title="Panel de Administración">
+    
+    <aside slot="sidebar">
+        <Sidebar />
+    </aside>
+
+    <div slot="main">
+        <Header title="Motorhomes" />
+        <MotorhomesTable />
+    </div>
+
+</AdminLayout>

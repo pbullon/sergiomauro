@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoginHeader from '../components/login/LoginHeader.astro';
+import LoginForm from '../components/login/LoginForm.astro';
+---
+<Layout title="Admin Login">
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div class="w-full max-w-md space-y-8">
+            <LoginHeader />
+            <LoginForm />
+        </div>
+    </div>
+</Layout>
