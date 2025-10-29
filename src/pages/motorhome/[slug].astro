@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Gallery from '../../components/detalles/Gallery.astro';
+import PriceCTA from '../../components/detalles/PriceCTA.astro';
+import { supabase } from '../../lib/supabase';
+import type { Database } from '../../types/supabase';
+
+type Motorhome = Database['public']['Tables']['motorhomes']['Row'];
+
+export async function getStaticPaths() {
+
+const { data: motorhomes, error } = await supabase
+    .from('motorhomes')
+    .select('slug');
+
+if (error) {
+    return [];
+}
+
+return motorhomes.map((motorhome) => {
+    return {
+    params: { slug: motorhome.slug }, 
+    };
+});
+}
+
+const { slug } = Astro.params;
+
+const { data: motorhome, error } = await supabase
+    .from('motorhomes')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+if (error || !motorhome) {
+    return Astro.redirect('/404');
+}
+---
+<Layout title={motorhome.titulo}>
+    <Header />
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="relative overflow-hidden rounded-xl shadow-lg mb-8">
+                <img src={motorhome.image} alt={`Vista de ${motorhome.title}`} class="bg-cover bg-center h-96 w-full object-cover"/>
+            </div>
+
+            <h1 class="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">{motorhome.title}</h1>
+            <p class="text-neutral-600 dark:text-neutral-300 mb-10 leading-relaxed">{motorhome.long_description}</p>
+
+            <Gallery images={motorhome.galery_images} />
+            <PriceCTA price={motorhome.price} title={motorhome.title} />
+
+        </div>
+    </main>
+    <Footer />
+</Layout>

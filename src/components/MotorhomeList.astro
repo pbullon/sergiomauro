@@ -1,14 +1,12 @@
 ---
 import MotorhomeCard from './MotorhomeCard.astro';
-import type { Database } from '../types/supabase'; // Importamos los tipos
+import type { Database } from '../types/supabase';
 
-// Le decimos al componente que va a recibir una propiedad "motorhomes"
 type Motorhome = Database['public']['Tables']['motorhomes']['Row'];
 interface Props {
     motorhomes: Motorhome[];
 }
 
-// Obtenemos los motorhomes que nos pasan desde la página principal
 const { motorhomes } = Astro.props;
 ---
 <section class="py-16 sm:py-24 bg-background-light dark:bg-background-dark/50" id="motorhomes">
@@ -17,14 +15,18 @@ const { motorhomes } = Astro.props;
             <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-white">Nuestros Motorhomes Disponibles</h2>
             <p class="mt-4 text-lg text-stone-600 dark:text-stone-400">Encuentra el compañero perfecto para tu próxima gran aventura.</p>
         </div>
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {motorhomes.map(motorhome => (
                 <MotorhomeCard 
                     title={motorhome.title}
                     image={motorhome.image}
-                    price={`$${motorhome.price}`}
-                    />
+                    price={motorhome.price}
+                    slug={motorhome.slug}
+                    is_new={motorhome.is_new}
+                />
             ))}
         </div>
+        
     </div>
 </section>

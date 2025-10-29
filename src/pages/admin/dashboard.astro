@@ -3,16 +3,41 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 import Sidebar from '../../components/admin/Sidebar.astro';
 import Header from '../../components/admin/Header.astro';
 import MotorhomesTable from '../../components/admin/MotorhomesTable.astro';
+import { supabase } from '../../lib/supabase';
+
+export const prerender = false;
+
+const accessToken = Astro.cookies.get('sb-access-token');
+const refreshToken = Astro.cookies.get('sb-refresh-token');
+
+if (accessToken && refreshToken) {
+  const { data } = await supabase.auth.setSession({
+    access_token: accessToken.value,
+    refresh_token: refreshToken.value,
+  });
+
+  if (data.user) {
+    return Astro.redirect('/admin/dashboard');
+  }
+}
+
+const { data: motorhomes, error } = await supabase
+    .from('motorhomes')
+    .select('*')
+    .order('created_at', { ascending: false }); // Ordenamos por fecha de creación
+
+if (error) {
+    console.error("Error al traer motorhomes para el dashboard:", error);
+}
 ---
 <AdminLayout title="Panel de Administración">
     
     <aside slot="sidebar">
-        <Sidebar />
+        <Sidebar showLogout={true} />
     </aside>
 
     <div slot="main">
         <Header title="Motorhomes" />
-        <MotorhomesTable />
+        {motorhomes && <MotorhomesTable motorhomes={motorhomes} />}
     </div>
-
 </AdminLayout>

@@ -1,0 +1,28 @@
+---
+import { supabase } from '../../lib/supabase';
+
+const { id } = Astro.params;
+
+// ¡Lo más importante! Le decimos a Astro que esta página es dinámica.
+export const prerender = false; 
+
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Motorhome</title>
+    </head>
+<body style="font-family: sans-serif; padding: 2rem; background-color: #f0f0f0;">
+    <h1>¡Hola desde el servidor!</h1>
+    <p>Si ves esto, la renderización en el servidor funciona.</p>
+    <h1>Formulario Motorhome</h1>
+    <p>Recibido ID: <strong>{id}</strong></p>
+    <p>¿Es nuevo? <strong>{id === 'nuevo' ? 'Sí' : 'No'}</strong></p>
+    <hr style="margin: 1rem 0;">
+    <p><a href="/admin/dashboard">Volver al Dashboard</a></p>
+
+    </body>
+</html>

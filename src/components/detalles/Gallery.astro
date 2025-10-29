@@ -1,0 +1,23 @@
+---
+interface Props {
+    images: string[];
+}
+const { images = [] } = Astro.props;
+
+const [mainImage, ...otherImages] = images;
+---
+<section class="mb-10">
+    <h3 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">Galería</h3>
+    {images.length > 0 && (
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 rounded-xl overflow-hidden">
+            <div class="col-span-2 row-span-2">
+                <img src={mainImage} alt="Vista principal del motorhome" class="bg-cover bg-center w-full h-full object-cover aspect-[4/3]" />
+            </div>
+            {otherImages.slice(0, 4).map((image, index) => (
+                <div class="col-span-1">
+                    <img src={image} alt={`Detalle del motorhome ${index + 1}`} class="bg-cover bg-center w-full h-full object-cover aspect-square" />
+                </div>
+            ))}
+        </div>
+    )}
+</section>

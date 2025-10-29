@@ -10,7 +10,8 @@ import { supabase } from '../lib/supabase';
 
 const { data: motorhomes, error } = await supabase
     .from('motorhomes')
-    .select('*');
+    .select('*')
+    .order('is_new', { ascending: false });
 
 if (error) console.error("Error fetching motorhomes:", error);
 ---

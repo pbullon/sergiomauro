@@ -1,0 +1,30 @@
+---
+interface Props {
+    price: number;
+    title: string;
+}
+const { price, title } = Astro.props;
+---
+<div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div>
+        <p class="text-sm text-primary font-bold">Precio</p>
+        
+        {price ? (
+            <p class="text-4xl font-bold text-neutral-900 dark:text-neutral-100">
+                ${price.toLocaleString('es-AR')}
+            </p>
+        ) : (
+            <p class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+                Consultar precio
+            </p>
+        )}
+    <a 
+        href={`https://wa.me/5493544408482?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20${encodeURIComponent(title)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto flex items-center justify-center gap-2 px-8 h-12 rounded-lg bg-primary text-white text-base font-bold shadow-lg hover:bg-opacity-90 transition-opacity whitespace-nowrap"
+    >
+        <span class="material-symbols-outlined text-xl">call</span>
+        Contactar por WhatsApp
+    </a>
+</div>
